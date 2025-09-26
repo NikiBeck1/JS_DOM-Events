@@ -75,20 +75,31 @@ let list = [ "apples", "bananas", "carrots", "dragon fruit", "eggplant", "fish",
 
  /*----------- Exercise #5: DOM EVENTS -----------*/
  // 1. Write a function called show which creates a new div with an alerting message to the user with this message -> "Clicking the button triggers the onclick event, which calls the JS function show()... which alerts the user"
- let message = document.createElement('div');
- message.textContent = "Clicking the button triggers the onclick event, which calls the JS function show()... which alerts the user";
- let modalOpened = false;
-
-function show() {
-    if (!modalOpened) {
+ 
+ function show() {
+     let message = document.createElement('div');
+     message.id = 'modal';
+     let modalOpened = false;
+     message.textContent = "Clicking the button triggers the onclick event, which calls the JS function show()... which alerts the user";
+     
+     let exitButton = document.createElement('button');
+     exitButton.textContent = "Close";
+     exitButton.onclick = function() {
+                 document.body.removeChild(message);
+                 modalOpened = false;
+             };
+    
+     if (!modalOpened) {
         modalOpened = true;
         document.body.appendChild(message);
+        message.appendChild(exitButton);
     } else {
         window.alert('Modal is already open');
     }
 }
 
- let button = document.getElementById('btn');
+
+let button = document.getElementById('btn');
 button.addEventListener('click', show);
 
 
