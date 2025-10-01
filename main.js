@@ -2,7 +2,7 @@
 
   // Select Node #1 and change the text to: "I used the getElementById("node1") method to access this"
   let node1 = document.getElementById("node1");
-    node1.innerText = 'I used the getElementById("node1") method to access this.'
+    node1.innerText = 'I used the getElementById("node1") method to access this.';
     console.log(node1);
 
 //Select Node #2 using the getElementsByClassName() method, and change the text to: "I used the getElementByClassName("node2") method to access this"
@@ -76,26 +76,29 @@ let list = [ "apples", "bananas", "carrots", "dragon fruit", "eggplant", "fish",
  /*----------- Exercise #5: DOM EVENTS -----------*/
  // 1. Write a function called show which creates a new div with an alerting message to the user with this message -> "Clicking the button triggers the onclick event, which calls the JS function show()... which alerts the user"
  
- function show() {
-     let message = document.createElement('div');
-     message.id = 'modal';
-     let modalOpened = false;
-     message.textContent = "Clicking the button triggers the onclick event, which calls the JS function show()... which alerts the user";
-     
-     let exitButton = document.createElement('button');
-     exitButton.textContent = "Close";
-     exitButton.onclick = function() {
-                 document.body.removeChild(message);
-                 modalOpened = false;
-             };
-    
-     if (!modalOpened) {
-        modalOpened = true;
-        document.body.appendChild(message);
-        message.appendChild(exitButton);
-    } else {
-        window.alert('Modal is already open');
-    }
+let modalOpened = false;
+
+function show() {
+  if (!modalOpened) {
+    modalOpened = true;
+
+    let message = document.createElement('div');
+    message.id = 'modal';
+    message.textContent = "Clicking the button triggers the onclick event, which calls the JS function show()... which alerts the user";
+
+    let exitButton = document.createElement('button');
+    exitButton.textContent = "Close";
+    exitButton.onclick = function () {
+      document.body.removeChild(message);
+      modalOpened = false;
+    };
+
+    document.body.appendChild(message);
+    message.appendChild(exitButton);
+
+  } else {
+    window.alert('Modal is already open');
+  }
 }
 
 
